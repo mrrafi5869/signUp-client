@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 const SignUp = () => {
-  const [file, setFile] = useState();
   const navigate = useNavigate();
-
-  const handleFile = (event) => {
-    setFile(event.target.files[0]);
-    console.log(file);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,12 +12,13 @@ const SignUp = () => {
     const number = form.number.value;
     const email = form.email.value;
     const password = form.password.value;
+    const file = form.file.files[0];
     const formData = new FormData();
     const data = { name, number, email, password };
     formData.append("file", file);
     formData.append("data", JSON.stringify(data));
 
-    fetch("http://localhost:5000/user", {
+    fetch("https://signup-server.vercel.app/user", {
       method: "POST",
       body: formData,
     })
@@ -114,7 +109,6 @@ const SignUp = () => {
                 name="file"
                 id="file"
                 className="input input-bordered hidden"
-                onChange={handleFile}
               />
             </div>
             <button className="form-control mt-6 btn btn-primary">
