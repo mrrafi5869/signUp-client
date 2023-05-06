@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 const SignUp = () => {
+  // const [file, setFile] = useState();
   const navigate = useNavigate();
+
+  // const handleFile = (event) => {
+  //   setFile(event.target.files[0]);
+  //   console.log(file);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -109,6 +115,7 @@ const SignUp = () => {
                 name="file"
                 id="file"
                 className="input input-bordered hidden"
+                // onChange={handleFile}
               />
             </div>
             <button className="form-control mt-6 btn btn-primary">
